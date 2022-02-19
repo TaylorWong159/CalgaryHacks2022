@@ -6,24 +6,19 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.effect.InnerShadow;
 import javafx.scene.input.ScrollEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 public class SetupPane extends ScrollPane {
 	
 	private double width, height;
 	private int slide = 0;
-	private Major major;
-	private Housing housing;
-	private Location location;
+	private Config config;
 	private boolean scrolling = false;
+	boolean complete = false;
 	
 	private class MenuPane extends VBox {
 		public MenuPane() {
@@ -44,8 +39,11 @@ public class SetupPane extends ScrollPane {
 				slide++;
 				parent.scroll();
 				setChoice();
+				if (parent.complete) {
+					
+				}
 			});
-			this.setMinWidth(200);
+			this.setMinWidth(250);
 		}
 		
 		protected abstract void setChoice();
@@ -63,28 +61,59 @@ public class SetupPane extends ScrollPane {
 		this.setHmax(width * 2);
 		this.setHmin(0);
 		
+		Font titleFont = Font.font("arial", FontWeight.BOLD, 36);
+		
 		// Major Selection
 		MenuPane majorPane = new MenuPane();
 		Label majorTitle = new Label("Select a major");
-		majorTitle.setFont(Font.font("arial", 36));
+		majorTitle.setFont(titleFont);
 		MenuPane.setMargin(majorTitle, new Insets(32));
 		ScrollButton compsci = new ScrollButton("Computer Science", this) {
 			public void setChoice() {
-				major = Major.COMPSCI;
+				config.setMajor(Major.COMPSCI);
 			}
 		};
 		ScrollButton engineering = new ScrollButton("Engineering", this) {
 			public void setChoice() {
-				major = Major.ENGINEERING;
+				config.setMajor(Major.ENGINEERING);
 			}
 		};
 		majorPane.getChildren().addAll(majorTitle, compsci, engineering);
 		
 		// Major Selection
 		MenuPane locationPane = new MenuPane();
+		Label locationTitle = new Label("Domestic or International Student");
+		locationTitle.setFont(titleFont);
+		MenuPane.setMargin(locationTitle, new Insets(32));
+		ScrollButton domestic = new ScrollButton("Domestic", this) {
+			public void setChoice() {
+				config.setLocation(Location.DOMESTIC);
+			}
+		};
+		ScrollButton international = new ScrollButton("International", this) {
+			public void setChoice() {
+				config.setLocation(Location.INTERNATIONAL);
+			}
+		};
+		locationPane.getChildren().addAll(locationTitle, domestic, international);
+		
 		
 		// Major Selection
 		MenuPane housingPane = new MenuPane();
+		Label housingTitle = new Label("Living Situation");
+		housingTitle.setFont(titleFont);
+		MenuPane.setMargin(housingTitle, new Insets(32));
+		ScrollButton campus = new ScrollButton("On Campus", this) {
+			public void setChoice() {
+				config.setHousing(Housing.CAMPUS);
+			}
+		};
+		ScrollButton home = new ScrollButton("From Home", this) {
+			public void setChoice() {
+				config.setHousing(Housing.HOME);
+			}
+		};
+		housingPane.getChildren().addAll(housingTitle, campus, home);
 		
 		
 		HBox container = new HBox();
@@ -99,7 +128,7 @@ public class SetupPane extends ScrollPane {
 	
 	public void scroll() {
 		this.scrolling = true;
-		long duration = 75;
+		long duration = 50;
 		SetupPane pane = this;
 		AnimationTimer timer = new AnimationTimer() {
 			long count = 0;
@@ -107,7 +136,7 @@ public class SetupPane extends ScrollPane {
 			public void handle(long now) {
 				if (count <= duration) {
 					double progress = count * 1d / duration;
-					pane.setHvalue(width * slide * progress);
+					pane.setHvalue(width * (slide - 1) + width * progress);
 				} else {
 					scrolling = false;
 					this.stop();
@@ -116,6 +145,10 @@ public class SetupPane extends ScrollPane {
 			}
 		};
 		timer.start();
+	}
+
+	public Config getConfig() {
+		return config;
 	}
 
 }
