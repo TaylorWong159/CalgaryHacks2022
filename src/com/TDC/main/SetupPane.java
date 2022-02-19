@@ -1,15 +1,20 @@
 package com.TDC.main;
 
+import javafx.animation.AnimationTimer;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.effect.InnerShadow;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 public class SetupPane extends ScrollPane {
 	
@@ -25,17 +30,22 @@ public class SetupPane extends ScrollPane {
 			super();
 			this.setMinWidth(width);
 			this.setMinHeight(height);
+			this.setAlignment(Pos.BASELINE_CENTER);
+			this.setSpacing(16);
+			//this.setPadding(new Insets(32));
 		}
 	}
 	
 	private abstract class ScrollButton extends Button {
 		public ScrollButton(String text, SetupPane parent) {
 			super(text);
+			this.setFont(Font.font("arial", 24));
 			this.setOnAction(e -> {
 				slide++;
 				parent.scroll();
 				setChoice();
 			});
+			this.setMinWidth(200);
 		}
 		
 		protected abstract void setChoice();
@@ -50,12 +60,14 @@ public class SetupPane extends ScrollPane {
 		this.setVbarPolicy(ScrollBarPolicy.NEVER);
 		this.setMinSize(width, height);
 		this.setMaxSize(width, height);
-		this.setHmax(width * 3);
+		this.setHmax(width * 2);
 		this.setHmin(0);
 		
 		// Major Selection
 		MenuPane majorPane = new MenuPane();
 		Label majorTitle = new Label("Select a major");
+		majorTitle.setFont(Font.font("arial", 36));
+		MenuPane.setMargin(majorTitle, new Insets(32));
 		ScrollButton compsci = new ScrollButton("Computer Science", this) {
 			public void setChoice() {
 				major = Major.COMPSCI;
@@ -67,31 +79,43 @@ public class SetupPane extends ScrollPane {
 			}
 		};
 		majorPane.getChildren().addAll(majorTitle, compsci, engineering);
-		majorPane.setBackground(new Background(new BackgroundFill(Color.GRAY, new CornerRadii(0), new Insets(0))));
-
+		
 		// Major Selection
 		MenuPane locationPane = new MenuPane();
-		locationPane.setBackground(new Background(new BackgroundFill(Color.DARKGRAY, new CornerRadii(0), new Insets(0))));
-
+		
 		// Major Selection
 		MenuPane housingPane = new MenuPane();
-		housingPane.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(0), new Insets(0))));
-
+		
 		
 		HBox container = new HBox();
 		container.getChildren().addAll(majorPane, locationPane, housingPane);
 		
 		
 		this.setContent(container);
-		this.hvalueProperty().addListener((obs, old, nw) -> {
-			if (!scrolling) this.setHvalue(old.doubleValue());
+		this.addEventFilter(ScrollEvent.SCROLL, e -> {
+			if (!scrolling) e.consume();
 		});
 	}
 	
 	public void scroll() {
 		this.scrolling = true;
-		this.setHvalue(width * this.slide);
-		this.scrolling = false;
+		long duration = 75;
+		SetupPane pane = this;
+		AnimationTimer timer = new AnimationTimer() {
+			long count = 0;
+			@Override
+			public void handle(long now) {
+				if (count <= duration) {
+					double progress = count * 1d / duration;
+					pane.setHvalue(width * slide * progress);
+				} else {
+					scrolling = false;
+					this.stop();
+				}
+				count++;
+			}
+		};
+		timer.start();
 	}
 
 }
