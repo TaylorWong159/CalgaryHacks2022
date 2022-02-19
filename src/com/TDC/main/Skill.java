@@ -9,9 +9,7 @@ public class Skill {
 		this.financials = financials;
 	}
 
-	public double getAcademic() {
-		return academic;
-	}
+	public double getAcademic() { return academic; }
 
 	public double getMentalHealth() {
 		return mentalHealth;
