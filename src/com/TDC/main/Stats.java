@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Stats {
-	private double academics, mentalHealth, financials;
+	private double academics, mentalHealth, financials, monthlyCost;
 	private TimeDistribution timeDist;
 	private int month;
 	private List<Skill> skills = new ArrayList<Skill>();
@@ -28,7 +28,7 @@ public class Stats {
 
 		academics = 0.3 * ((timeDist.getSchool() + 0.5 * timeDist.getSleep()) * (1.5 / 100) + incAcademics) + 0.7 * academics;
 		mentalHealth = 0.3 * ((timeDist.getRelax() + 0.5 * timeDist.getSleep()) * (1.5 / 100) + incMentalHealth) + 0.7 * mentalHealth;
-		financials = financials + timeDist.getWork() * 105 - monthlyCost
+		financials = financials + timeDist.getWork() * 105 - monthlyCost;
 		
 	}
 

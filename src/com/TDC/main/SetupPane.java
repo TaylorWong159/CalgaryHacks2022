@@ -40,6 +40,8 @@ public class SetupPane extends ScrollPane {
 		this.setHbarPolicy(ScrollBarPolicy.NEVER);
 		this.setVbarPolicy(ScrollBarPolicy.NEVER);
 		this.setMaxSize(width, height);
+		this.setHmax(1);
+		this.setHmin(0);
 		
 		// Major Selection
 		MenuPane majorPane = new MenuPane();
