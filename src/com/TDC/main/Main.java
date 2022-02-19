@@ -12,7 +12,11 @@ public class Main extends Application {
 	}
 	
 	public void start(Stage window) throws Exception {
+		SetupPane setup = new SetupPane(800, 600);
+		
 		BorderPane container = new BorderPane();
+		container.setCenter(setup);
+		
 		Scene mainScene = new Scene(container, 800, 600);
 		
 		window.setScene(mainScene);

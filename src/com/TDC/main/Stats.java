@@ -18,8 +18,6 @@ public class Stats {
 	}
 
 	public void update() {
-		double res = 0.3 * ((buffs + 0.5 * timeDist.getSleep()) * (target / 100) + 0.7 * stat;
-		
 		double incAcademics = 0, incMentalHealth = 0, incFinancials = 0;
 		for (Skill skill : skills) {
 			incAcademics += skill.getAcademic();
