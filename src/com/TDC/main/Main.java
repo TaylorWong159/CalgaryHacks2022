@@ -11,6 +11,7 @@ public class Main extends Application {
 	
 	public void start(Stage window) throws Exception {
 		
+		window.show();
 	}
 
 }
