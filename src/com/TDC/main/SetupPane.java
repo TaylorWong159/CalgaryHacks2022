@@ -18,6 +18,7 @@ public class SetupPane extends ScrollPane {
 	private Major major;
 	private Housing housing;
 	private Location location;
+	private boolean scrolling = false;
 	
 	private class MenuPane extends VBox {
 		public MenuPane() {
@@ -82,10 +83,15 @@ public class SetupPane extends ScrollPane {
 		
 		
 		this.setContent(container);
+		this.hvalueProperty().addListener((obs, old, nw) -> {
+			if (!scrolling) this.setHvalue(old.doubleValue());
+		});
 	}
 	
 	public void scroll() {
-		this.setHvalue(this.getHmax() * this.slide / 3);
+		this.scrolling = true;
+		this.setHvalue(width * this.slide);
+		this.scrolling = false;
 	}
 
 }
