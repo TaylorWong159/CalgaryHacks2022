@@ -1,10 +1,15 @@
 package com.TDC.main;
 
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
 public class SetupPane extends ScrollPane {
 	
@@ -17,8 +22,8 @@ public class SetupPane extends ScrollPane {
 	private class MenuPane extends VBox {
 		public MenuPane() {
 			super();
-			this.setWidth(width);
-			this.setHeight(height);
+			this.setMinWidth(width);
+			this.setMinHeight(height);
 		}
 	}
 	
@@ -37,10 +42,14 @@ public class SetupPane extends ScrollPane {
 	}
 
 	public SetupPane(double width, double height) {
+		this.width = width;
+		this.height = height;
+		
 		this.setHbarPolicy(ScrollBarPolicy.NEVER);
 		this.setVbarPolicy(ScrollBarPolicy.NEVER);
+		this.setMinSize(width, height);
 		this.setMaxSize(width, height);
-		this.setHmax(1);
+		this.setHmax(width * 3);
 		this.setHmin(0);
 		
 		// Major Selection
@@ -57,14 +66,16 @@ public class SetupPane extends ScrollPane {
 			}
 		};
 		majorPane.getChildren().addAll(majorTitle, compsci, engineering);
-		majorPane.setBackground(new Background(new Back));
+		majorPane.setBackground(new Background(new BackgroundFill(Color.GRAY, new CornerRadii(0), new Insets(0))));
 
 		// Major Selection
 		MenuPane locationPane = new MenuPane();
+		locationPane.setBackground(new Background(new BackgroundFill(Color.DARKGRAY, new CornerRadii(0), new Insets(0))));
 
 		// Major Selection
 		MenuPane housingPane = new MenuPane();
-		
+		housingPane.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(0), new Insets(0))));
+
 		
 		HBox container = new HBox();
 		container.getChildren().addAll(majorPane, locationPane, housingPane);
