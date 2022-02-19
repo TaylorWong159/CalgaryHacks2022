@@ -28,8 +28,10 @@ public class Stats {
 
 		academics = 0.3 * ((timeDist.getSchool() + 0.5 * timeDist.getSleep()) * (1.5 / 100) + incAcademics) + 0.7 * academics;
 		mentalHealth = 0.3 * ((timeDist.getRelax() + 0.5 * timeDist.getSleep()) * (1.5 / 100) + incMentalHealth) + 0.7 * mentalHealth;
-		financials = financials + timeDist.getWork() * 105 - monthlyCost;
+		financials = financials + timeDist.getWork() * 105 - monthlyCost + incFinancials;
 		
+		academics = Math.min(1, academics);
+		mentalHealth = Math.min(1, mentalHealth);
 	}
 
 	public double getAcademics() {
