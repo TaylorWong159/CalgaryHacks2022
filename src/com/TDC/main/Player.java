@@ -5,14 +5,24 @@ import java.util.Set;
 
 import com.TDC.skills.Skills;
 
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+
 public class Player {
 	private Stats stats;
 	private Set<Skills> skills;
 	private Config config;
 	private int completeCourses, currentCourses;
 	
-	public Player(Stats stats, Config config) {
-		this.stats = stats;
+	public Player(Config config) {
+		this.stats = new Stats(config);
 		this.skills = new HashSet<Skills>();
 		this.config = config;
 		this.completeCourses = 0;
@@ -40,5 +50,63 @@ public class Player {
 	
 	public int getRemainingCourses() {
 		return config.getMajor().getRemainingCourses(completeCourses);
+	}
+	
+	public Config getConfig() {
+		return config;
+	}
+	
+	public Stage getPreview() {
+		
+		Label title = new Label("Stats:");
+		title.setFont(Font.font("arial", 36));
+		
+		Font statFont = Font.font("arial", 20);
+		
+		// School Stat
+		Label schoolLabel = new Label("School: ");
+		schoolLabel.setFont(statFont);
+		
+		Label schoolValue = new Label((int) this.stats.getAcademics() * 100 + "%");
+		schoolValue.setFont(statFont);
+		
+		HBox schoolBox = new HBox();
+		schoolBox.getChildren().addAll(schoolLabel, schoolValue);
+
+		// Mental Health Stat
+		Label mentalHealthLabel = new Label("Mental Health: ");
+		mentalHealthLabel.setFont(statFont);
+		
+		Label mentalHealthValue = new Label((int) this.stats.getMentalHealth() * 100 + "%");
+		mentalHealthValue.setFont(statFont);
+		
+		HBox mentalHealthBox = new HBox();
+		mentalHealthBox.getChildren().addAll(mentalHealthLabel, mentalHealthValue);
+
+		// Mental Health Stat
+		Label financialsLabel = new Label("Money: ");
+		financialsLabel.setFont(statFont);
+		
+		Label financialsValue = new Label("$" + this.stats.getFinancials());
+		financialsValue.setFont(statFont);
+		
+		HBox financialsBox = new HBox();
+		financialsBox.getChildren().addAll(financialsLabel, financialsValue);
+		
+		VBox container = new VBox();
+		container.getChildren().addAll(title, schoolBox, mentalHealthBox, financialsBox);
+		container.setAlignment(Pos.BASELINE_CENTER);
+		container.setSpacing(4);
+		container.setPadding(new Insets(16));
+		
+		Scene scene = new Scene(container, 300, 400);
+		
+		Stage window = new Stage();
+		window.setResizable(false);
+		window.setScene(scene);
+		window.setTitle("Player Stats");
+		window.initModality(Modality.APPLICATION_MODAL);
+		
+		return window;
 	}
 }
