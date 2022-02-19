@@ -62,10 +62,12 @@ public class Player {
 		title.setFont(Font.font("arial", 36));
 		
 		Font statFont = Font.font("arial", 20);
+		double labelWidth = 150;
 		
 		// School Stat
 		Label schoolLabel = new Label("School: ");
 		schoolLabel.setFont(statFont);
+		schoolLabel.setMinWidth(labelWidth);
 		
 		Label schoolValue = new Label((int) this.stats.getAcademics() * 100 + "%");
 		schoolValue.setFont(statFont);
@@ -76,6 +78,7 @@ public class Player {
 		// Mental Health Stat
 		Label mentalHealthLabel = new Label("Mental Health: ");
 		mentalHealthLabel.setFont(statFont);
+		mentalHealthLabel.setMinWidth(labelWidth);
 		
 		Label mentalHealthValue = new Label((int) this.stats.getMentalHealth() * 100 + "%");
 		mentalHealthValue.setFont(statFont);
@@ -86,8 +89,9 @@ public class Player {
 		// Mental Health Stat
 		Label financialsLabel = new Label("Money: ");
 		financialsLabel.setFont(statFont);
+		financialsLabel.setMinWidth(labelWidth);
 		
-		Label financialsValue = new Label("$" + this.stats.getFinancials());
+		Label financialsValue = new Label("$" + (int) this.stats.getFinancials());
 		financialsValue.setFont(statFont);
 		
 		HBox financialsBox = new HBox();
