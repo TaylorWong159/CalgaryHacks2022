@@ -57,6 +57,7 @@ public class SetupPane extends ScrollPane {
 			}
 		};
 		majorPane.getChildren().addAll(majorTitle, compsci, engineering);
+		majorPane.setBackground(new Background(new Back));
 
 		// Major Selection
 		MenuPane locationPane = new MenuPane();
@@ -67,6 +68,7 @@ public class SetupPane extends ScrollPane {
 		
 		HBox container = new HBox();
 		container.getChildren().addAll(majorPane, locationPane, housingPane);
+		
 		
 		this.setContent(container);
 	}
