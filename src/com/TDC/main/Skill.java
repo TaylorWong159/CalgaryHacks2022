@@ -3,7 +3,7 @@ package com.TDC.main;
 public class Skill {
 	private double academic, mentalHealth, financials;
 	
-	public Skill(double academic, double mentalHealth, double finanicals) {
+	public Skill(double academic, double mentalHealth, double financials) {
 		this.academic = academic;
 		this.mentalHealth = mentalHealth;
 		this.financials = financials;
