@@ -1,5 +1,10 @@
 package com.TDC.main;
 
-public class CourseSelection {
-	
+import javafx.scene.layout.VBox;
+
+public class CourseSelection extends VBox {
+	public CourseSelection() {
+		super();
+		this.g
+	}
 }
