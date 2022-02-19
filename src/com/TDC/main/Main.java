@@ -28,6 +28,7 @@ public class Main extends Application {
 					Config config = setup.getConfig();
 					System.out.println(config);
 					this.stop();
+					GameOverWindow.show();
 				}
 			}
 		};
@@ -39,7 +40,7 @@ public class Main extends Application {
 		window.setOnCloseRequest(e -> {
 			gameLoop.stop();
 		});
-		//window.setResizable(false);
+		window.setResizable(false);
 		window.setScene(mainScene);
 		window.setTitle("School Simulator");
 		window.show();
