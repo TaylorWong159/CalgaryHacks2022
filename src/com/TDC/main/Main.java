@@ -1,7 +1,9 @@
 package com.TDC.main;
 
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -17,8 +19,25 @@ public class Main extends Application {
 		BorderPane container = new BorderPane();
 		container.setCenter(setup);
 		
+		AnimationTimer gameLoop = new AnimationTimer() {
+			@Override
+			public void handle(long now) {
+				if (setup.isComplete()) {
+					Config config = setup.getConfig();
+					System.out.println(config);
+					this.stop();
+				}
+			}
+		};
+		
+		gameLoop.start();
+		
 		Scene mainScene = new Scene(container, 800, 600);
 		
+		window.setOnCloseRequest(e -> {
+			gameLoop.stop();
+		});
+		window.setResizable(false);
 		window.setScene(mainScene);
 		window.setTitle("School Simulator");
 		window.show();

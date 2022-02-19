@@ -18,7 +18,6 @@ public class SetupPane extends ScrollPane {
 	private int slide = 0;
 	private Config config;
 	private boolean scrolling = false;
-	boolean complete = false;
 	
 	private class MenuPane extends VBox {
 		public MenuPane() {
@@ -39,9 +38,6 @@ public class SetupPane extends ScrollPane {
 				slide++;
 				parent.scroll();
 				setChoice();
-				if (parent.complete) {
-					
-				}
 			});
 			this.setMinWidth(250);
 		}
@@ -53,6 +49,7 @@ public class SetupPane extends ScrollPane {
 	public SetupPane(double width, double height) {
 		this.width = width;
 		this.height = height;
+		this.config = new Config();
 		
 		this.setHbarPolicy(ScrollBarPolicy.NEVER);
 		this.setVbarPolicy(ScrollBarPolicy.NEVER);
@@ -149,6 +146,10 @@ public class SetupPane extends ScrollPane {
 
 	public Config getConfig() {
 		return config;
+	}
+	
+	public boolean isComplete() {
+		return config.isComplete();
 	}
 
 }

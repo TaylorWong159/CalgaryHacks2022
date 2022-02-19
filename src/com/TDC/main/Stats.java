@@ -3,19 +3,30 @@ package com.TDC.main;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.TDC.skills.Skill;
+
 public class Stats {
 	private double academics, mentalHealth, financials, monthlyCost;
 	private TimeDistribution timeDist;
 	private int month;
 	private List<Skill> skills = new ArrayList<Skill>();
 	
-	public Stats(double mentalHealth, double financials, int month, TimeDistribution timeDist, double monthlyCost) {
+	public Stats(TimeDistribution timeDist, double monthlyCost) {
 		this.academics = 0.5;
-		this.mentalHealth = mentalHealth;
-		this.financials = financials;
+		this.mentalHealth = 0.5;
+		this.financials = 10000;
 		this.timeDist = timeDist;
-		this.month = month;
+		this.month = 0;
 		this.monthlyCost = monthlyCost;
+	}
+
+	public Stats(Config config) {
+		this.academics = 0.5;
+		this.mentalHealth = 0.5;
+		this.financials = 10000;
+		//this.timeDist = timeDist;
+		this.month = 0;
+		//this.monthlyCost = monthlyCost;
 	}
 
 	public void update() {
@@ -32,6 +43,7 @@ public class Stats {
 		
 		academics = Math.min(1, academics);
 		mentalHealth = Math.min(1, mentalHealth);
+		month++;
 	}
 
 	public double getAcademics() {

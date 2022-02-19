@@ -1,5 +1,9 @@
 package com.TDC.main;
 
 public enum Major {
-	COMPSCI, ENGINEERING;
+	COMPSCI(), ENGINEERING;
+	
+	private Major(int courses) {
+		
+	}
 }

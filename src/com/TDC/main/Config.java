@@ -42,5 +42,10 @@ public class Config {
 		this.major = major;
 	}
 	
+	@Override
+	public String toString() {
+		return "Housing: " + housing + "\nLocation: " + location + "\nMajor: " + major;
+	}
+	
 	
 }
