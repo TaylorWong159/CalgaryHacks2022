@@ -21,7 +21,9 @@ public class Clicker implements Game {
     private String[][] scramble = {{"enlco", "ceycl", "dautl", "aeplp", "orerr", "oslok", "tlbea", "voedi", "htyuo", "hcpat", "uneve", "ltiop", "veuga", "gelae", "srmud", "atlyl", "utboa", "dytsu", "hiuss"},
                                 {"lyatiib", "ebnseac", "helnnca", "tulceru", "beltryi", "lffctau", "adbdllo", "iizctne", "cpceais", "nacscel", "ehhlyta", "eftbnei", "seevard", "biyrlar", "amevsis", "geinamn", "cehtare", "eptctor", "itayfss"},
                                 {"amiecurln", "wssdapsro", "eilrnzaig", "niigrhltl", "lpxeooisn", "ociestmsc", "uindigeel", "ietitnyd", "lnyiltiia", "utnitsaoi", "ptenrides", "ontsiuseq", "ohdunsast", "unsontmia", "iksalpnrg", "ilngrccye", "atirshley"}};
-
+    public void tutorial(){
+        ClickerTutorial.getTutorial();
+    }
     public double play(Player player) {
     	difficulty = Difficulty.getDifficulty(1 - ((player.getStats().getAcademics() + player.getStats().getMentalHealth())/2));
         int d = difficulty.asInt();
