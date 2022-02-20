@@ -79,13 +79,14 @@ public class Main extends Application {
 						if (player != null) player.getStats().setTimeDist(timeDist);
 						state = GameState.MAINLOOP;
 						player.update();
-						monthConfirm = new MonthEndConfirmation(months[curMonth = (curMonth + 1) % months.length], player);
+						monthConfirm = new MonthEndConfirmation(months[curMonth], player);
 						container.setCenter(monthConfirm);
 						break;
 					case MAINLOOP:
 						if (monthConfirm == null) break;
 						if (!monthConfirm.isComplete()) break;
 						if (curMonth % 4 != 3) {
+							curMonth = (curMonth + 1) % months.length;
 							monthParam = new MonthParamPane(months[curMonth]);
 							container.setCenter(monthParam);
 							state = GameState.MONTH_PARAMS;

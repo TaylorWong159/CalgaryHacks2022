@@ -62,7 +62,7 @@ public class MonthParamPane extends VBox {
 		Label relaxReadout = new Label(format("Relaxation: ", slider.getDividerPositions()[2] - slider.getDividerPositions()[1]));
 		relaxReadout.setFont(font);
 		
-		Label workReadout = new Label("Work: " + 24 * (1 - (slider.getDividerPositions()[2])));
+		Label workReadout = new Label("Work: " + 24 * (1 - slider.getDividerPositions()[2]));
 		workReadout.setFont(font);
 		
 		VBox readout = new VBox();
@@ -73,7 +73,7 @@ public class MonthParamPane extends VBox {
 				sleepReadout.setText("Sleep: " + as1Decimal(positions[0]));
 				schoolReadout.setText("School: " + as1Decimal(positions[1] - positions[0]));
 				relaxReadout.setText("Relaxation: " + as1Decimal(positions[2] - positions[1]));
-				workReadout.setText("Work: " + as1Decimal(24 * (1 - (positions[2]))));
+				workReadout.setText("Work: " + as1Decimal(1 - positions[2]));
 			});
 		});
 		slider.setDividerPositions(0.25, 0.5, 0.75);
@@ -104,6 +104,6 @@ public class MonthParamPane extends VBox {
 	}
 	
 	private String as1Decimal(double d) {
-		return "" + Math.floor(d * 10) / 10;
+		return "" + Math.floor(d * 240) / 10;
 	}
 }

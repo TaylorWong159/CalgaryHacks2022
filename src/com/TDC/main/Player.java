@@ -3,7 +3,6 @@ package com.TDC.main;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.TDC.skills.Skill;
 import com.TDC.skills.Skills;
 
 import javafx.geometry.Insets;
