@@ -39,7 +39,10 @@ public class CourseSelectPane extends VBox {
 		courseSelection.setFont(Font.font("arial", 24));
 
 		HBox buttonBox = new HBox();
-		if (playerMoney < 3 * costPerCourse) return;
+		if (playerMoney < 3 * costPerCourse) {
+			coursesToTake = 0;
+			selectionMade = true;
+		}
 		for (int i = 3; i < Math.min(playerMoney / costPerCourse, 7); i++) {
 			buttonBox.getChildren().add(new CourseButton(i));
 		}

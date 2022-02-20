@@ -1,7 +1,5 @@
 package com.TDC.main;
 
-import com.TDC.skills.Skills;
-
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -14,6 +12,7 @@ public class Main extends Application {
 	public Player player;
 	public SetupPane setup;
 	public CourseSelectPane courseSelect;
+	public MonthParamPane monthParam;
 
 	public static void main(String[] args) {
 		launch(args);
@@ -54,8 +53,18 @@ public class Main extends Application {
 						int courses = courseSelect.getCoursesToTake();
 						if (courses > 0) {
 							System.out.println(courses);
+							monthParam = new MonthParamPane();
+							container.setCenter(monthParam);
+							state = GameState.MONTH_PARAMS;
 						} else state = GameState.GAMEOVER;
 						
+						break;
+					case MONTH_PARAMS:
+						if (monthParam == null) break;
+						if (!monthParam.isComplete()) break;
+						TimeDistribution timeDist = monthParam.getTimes();
+						System.out.println(timeDist);
+						if (player != null) player.getStats().setTimeDist(timeDist);
 						break;
 					case MAINLOOP:
 						break;

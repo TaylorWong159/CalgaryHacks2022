@@ -4,11 +4,12 @@ public class TimeDistribution {
 	private final int TOTAL = 100;
 	private int sleep, school, relax, work;
 	
-	public TimeDistribution(int sleep, int school, int relax, int work) {
-		this.sleep = sleep;
-		this.school = school;
-		this.relax = relax;
-		this.work = work;
+	public TimeDistribution(double[] percents) {
+		if (percents.length != 3) throw new IllegalArgumentException();
+		this.sleep = (int) (TOTAL * percents[0]);
+		this.school = (int) (TOTAL * (percents[1] - percents[0]));
+		this.relax = (int) (TOTAL * (percents[2] - percents[1]));
+		this.work = (int) (TOTAL - TOTAL * percents[2]);
 	}
 
 	public int getSleep() {
@@ -42,11 +43,9 @@ public class TimeDistribution {
 	public void setWork(int work) {
 		this.work = work;
 	}
-
-	public int getTOTAL() {
-		return TOTAL;
+	
+	@Override
+	public String toString() {
+		return String.format("Sleep: %d, School: %d, Relax: %d, Work: %d", sleep, school, relax, work);
 	}
-	
-	
-	
 }

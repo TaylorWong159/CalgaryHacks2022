@@ -46,6 +46,14 @@ public class Stats {
 		month++;
 	}
 
+	public TimeDistribution getTimeDist() {
+		return timeDist;
+	}
+
+	public void setTimeDist(TimeDistribution timeDist) {
+		this.timeDist = timeDist;
+	}
+
 	public double getAcademics() {
 		return academics;
 	}
