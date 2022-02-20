@@ -21,6 +21,7 @@ public class Main extends Application {
 	public ExamResultPane resultPane;
 	public static final String[] months = {"September", "October", "November", "December", "January", "February", "March", "April", "May", "June", "July", "August"};
 	public Game curGame;
+	public String gameOverMessage = "";
 	
 	public static void main(String[] args) {
 		launch(args);
@@ -68,17 +69,23 @@ public class Main extends Application {
 							monthParam = new MonthParamPane(months[curMonth]);
 							container.setCenter(monthParam);
 							state = GameState.MONTH_PARAMS;
-						} else state = GameState.GAMEOVER;
+						} else {
+							state = GameState.GAMEOVER;
+							gameOverMessage = "You took no courses";
+						}
 						
 						break;
 					case MONTH_PARAMS:
 						if (monthParam == null) break;
 						if (!monthParam.isComplete()) break;
 						TimeDistribution timeDist = monthParam.getTimes();
-						System.out.println(timeDist);
 						if (player != null) player.getStats().setTimeDist(timeDist);
 						state = GameState.MAINLOOP;
 						player.update();
+						if (player.getStats().getMentalHealth() <= 0) {
+							state = GameState.GAMEOVER;
+							gameOverMessage = "You're Mental Health got too low";
+						}
 						monthConfirm = new MonthEndConfirmation(months[curMonth], player);
 						container.setCenter(monthConfirm);
 						break;
@@ -119,7 +126,7 @@ public class Main extends Application {
 						
 						break;
 					case GAMEOVER:
-						GameOverWindow.show();
+						GameOverWindow.show(gameOverMessage);
 						this.stop();
 						break;
 				}

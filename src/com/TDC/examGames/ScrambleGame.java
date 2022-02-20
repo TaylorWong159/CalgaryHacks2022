@@ -24,7 +24,7 @@ public class ScrambleGame extends Game {
 
     private String[][] scramble = {{"eadb", "abut", "rcae", "leas", "teag", "kaec", "coni", "ickk", "mayn", "peta", "meal", "kaec"},
     		{"enlco", "ceycl", "dautl", "aeplp", "orerr", "oslok", "tlbea", "voedi", "htyuo", "hcpat", "uneve", "ltiop", "veuga", "gelae", "srmud", "atlyl", "utboa", "dytsu", "hiuss"},
-    		{"btteer", "corren", "hslande", "fcangi", "rkaetm", "gronst", "urtlet", "ngitar", "veltra", "puprle"}};
+    		{"btteer", "corren", "hlande", "fcangi", "rkaetm", "gronst", "urtlet", "ngitar", "veltra", "puprle"}};
     public void showTutorial(){
         ScrambleTutorial.getTutorial();
     }

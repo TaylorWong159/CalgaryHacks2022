@@ -10,13 +10,16 @@ import javafx.stage.Stage;
 
 public class GameOverWindow {
 
-	public static void show() {
+	public static void show(String gameOverMessage) {
 		
 		Label title = new Label("Game Over");
 		title.setFont(Font.font("arial", FontWeight.BOLD, 48));
 		
+		Label msg = new Label(gameOverMessage);
+		msg.setFont(Font.font("arial", 36));
+		
 		StackPane container = new StackPane();
-		container.getChildren().add(title);
+		container.getChildren().addAll(title, msg);
 		
 		Scene scene = new Scene(container, 400, 400);
 		
