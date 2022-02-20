@@ -74,7 +74,7 @@ public class Clicker implements Game {
         game.setScene(scene);
         game.showAndWait();
 
-        return score / (double) player.getCurrentCourses();
+        return score;
 
     }
 
