@@ -10,17 +10,17 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class Math implements Game {
+public class MathGame implements Game {
     private int score = 0;
     private Difficulty difficulty;
 
-    private String[][] words = {{"clone", "cylce", "adult", "apple", "error", "looks", "table", "video", "youth", "patch", "venue", "pilot", "vague", "eagle", "drums", "tally", "about", "dusty", "sushi"},
-            {"ability", "absence", "channel", "culture", "liberty", "factful", "oddball", "citizen", "icecaps", "cancels", "healthy", "benefit", "adverse", "library", "massive", "meaning", "teacher", "protect", "satisfy"},
-            {"numerical", "passwords", "realizing", "thrilling", "explosion", "cosmetics", "guideline", "identity", "initially", "situation", "president", "questions", "thousands", "mountains", "sparkling", "recycling", "hairstyle"}};
+    private String[][] words = {{"43", "8", "14", "10", "16", "20", "37", "21", "32", "2", "23", "21", "24", "26", "20", "5", "25", "21"},
+            {"36", "125", "100", "42", "27", "40", "21", "30", "23", "20", "32", "16", "12", "12", "36", "12"},
+            {"6", "3", "7", "9", "8", "11", "7", "6", "9", "7", "9", "5", "9"}};
 
-    private String[][] scramble = {{"enlco", "ceycl", "dautl", "aeplp", "orerr", "oslok", "tlbea", "voedi", "htyuo", "hcpat", "uneve", "ltiop", "veuga", "gelae", "srmud", "atlyl", "utboa", "dytsu", "hiuss"},
-            {"lyatiib", "ebnseac", "helnnca", "tulceru", "beltryi", "lffctau", "adbdllo", "iizctne", "cpceais", "nacscel", "ehhlyta", "eftbnei", "seevard", "biyrlar", "amevsis", "geinamn", "cehtare", "eptctor", "itayfss"},
-            {"amiecurln", "wssdapsro", "eilrnzaig", "niigrhltl", "lpxeooisn", "ociestmsc", "uindigeel", "ietitnyd", "lnyiltiia", "utnitsaoi", "ptenrides", "ontsiuseq", "ohdunsast", "unsontmia", "iksalpnrg", "ilngrccye", "atirshley"}};
+    private String[][] scramble = {{"18+25", "17-9", "6+8", "6+18-14", "18-0.5-1.5", "2+23-5", "18+19", "22+3-4", "17+15", "17-15", "18+2+3", "19+2", "18+6", "19+4+3", "18+2", "12-7", "11+14", "9+9+3"},
+    		{"18*2", "25*5", "20*5", "6*7", "3*9", "4*10", "3*7", "15*2", "4*6", "5*4", "2*16", "4*4", "3*4", "2*6", "19*2", "4*3"},
+    		{"18/3", "21/7", "35/5", "18/2", "48/6", "77/7", "63/9", "54/8", "81/9", "42/6", "99/11", "25/5", "72/8"}};
 
     public double play(Player player) {
         difficulty = Difficulty.getDifficulty(1 - ((player.getStats().getAcademics() + player.getStats().getMentalHealth())/2));
