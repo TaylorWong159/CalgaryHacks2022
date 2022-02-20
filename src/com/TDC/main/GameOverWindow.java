@@ -1,8 +1,9 @@
 package com.TDC.main;
 
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Modality;
@@ -18,8 +19,9 @@ public class GameOverWindow {
 		Label msg = new Label(gameOverMessage);
 		msg.setFont(Font.font("arial", 36));
 		
-		StackPane container = new StackPane();
+		VBox container = new VBox();
 		container.getChildren().addAll(title, msg);
+		container.setAlignment(Pos.CENTER);
 		
 		Scene scene = new Scene(container, 400, 400);
 		
