@@ -25,7 +25,7 @@ public enum Skills {
 		String res = "";
 		
 		for (String w : s.split("_"))
-			res += w.substring(0, 1).toUpperCase() + w.substring(1, w.length()).toLowerCase();
+			res += w.substring(0, 1).toUpperCase() + w.substring(1, w.length()).toLowerCase() + " ";
 		
 		return res;
 	}
