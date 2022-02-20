@@ -1,15 +1,10 @@
 package com.TDC.main;
 
-import java.util.Arrays;
-
-import javafx.collections.ListChangeListener;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
-import javafx.scene.control.SplitPane.Divider;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -20,10 +15,10 @@ public class MonthParamPane extends VBox {
 	
 	public MonthParamPane(String month) {
 		Label text = new Label("Please partition your time for each day in " + month);
-		text.setFont(Font.font("arial", 36));
+		text.setFont(Font.font("arial", 32));
 		text.setWrapText(true);
 		
-		Font font = Font.font("arial", 26);
+		Font font = Font.font("arial", 16);
 		
 		// Sleep
 		Label sleep = new Label("Sleep");
@@ -59,9 +54,16 @@ public class MonthParamPane extends VBox {
 
 		
 		Label sleepReadout = new Label(format("Sleep: ", slider.getDividerPositions()[0]));
+		sleepReadout.setFont(font);
+		
 		Label schoolReadout = new Label(format("School: ", slider.getDividerPositions()[1] - slider.getDividerPositions()[0]));
+		schoolReadout.setFont(font);
+		
 		Label relaxReadout = new Label(format("Relaxation: ", slider.getDividerPositions()[2] - slider.getDividerPositions()[1]));
+		relaxReadout.setFont(font);
+		
 		Label workReadout = new Label("Work: " + 24 * (1 - (slider.getDividerPositions()[2])));
+		workReadout.setFont(font);
 		
 		VBox readout = new VBox();
 		readout.getChildren().addAll(sleepReadout, schoolReadout, relaxReadout, workReadout);
@@ -74,6 +76,7 @@ public class MonthParamPane extends VBox {
 				workReadout.setText("Work: " + as1Decimal(24 * (1 - (positions[2]))));
 			});
 		});
+		slider.setDividerPositions(0.25, 0.5, 0.75);
 		
 		Button confirm = new Button("Confirm");
 		confirm.setOnAction(e -> {

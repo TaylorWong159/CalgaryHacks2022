@@ -25,5 +25,6 @@ public class GameOverWindow {
 		window.setTitle("Game Over");
 		window.initModality(Modality.APPLICATION_MODAL);
 		window.show();
+		window.setOnCloseRequest(e -> System.exit(0));
 	}
 }

@@ -30,7 +30,7 @@ public class CourseSelectPane extends VBox {
 		Label title = new Label("What do you want to do this semester:");
 		title.setFont(Font.font("arial", 42));
 		
-		Label remaining = new Label(String.format("You need %d more coursed to graduate", p.getRemainingCourses()));
+		Label remaining = new Label(String.format("You need %d more courses to graduate", p.getRemainingCourses()));
 		remaining.setFont(Font.font("arial", 36));
 		
 		int costPerCourse = p.getConfig().getLocation().getTuitionPerCourse();

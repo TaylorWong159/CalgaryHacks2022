@@ -2,6 +2,7 @@ package com.TDC.skills;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
+import javafx.scene.text.Font;
 
 public class Skill extends Button {
 	private double academic, mentalHealth, financials;
@@ -12,6 +13,7 @@ public class Skill extends Button {
 		this.mentalHealth = mentalHealth;
 		this.financials = financials;
 		this.setTooltip(new Tooltip(description));
+		this.setFont(Font.font("arial", 28));
 	}
 
 	public double getAcademic() { 

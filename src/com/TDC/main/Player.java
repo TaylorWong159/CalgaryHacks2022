@@ -44,12 +44,20 @@ public class Player {
 		return skills.contains(skill);
 	}
 	
+	public void setCurrentCourses(int c) {
+		currentCourses = c;
+	}
+	
 	public int getCurrentCourses() {
 		return currentCourses;
 	}
 	
 	public int getCompletedCourses() {
 		return completeCourses;
+	}
+	
+	public void completeCourses(int c) {
+		completeCourses += c;
 	}
 	
 	public int getRemainingCourses() {

@@ -2,7 +2,18 @@ package com.TDC.examGames;
 
 import com.TDC.main.Player;
 
-public interface Game {
-	public double play(Player p);
-	public void showTutorial();
+public abstract class Game {
+	protected double score;
+	protected boolean finished;
+	
+	public abstract void play(Player p);
+	public abstract void showTutorial();
+	
+	public boolean isFinished() {
+		return finished;
+	}
+	
+	public double getScore() {
+		return score;
+	}
 }
