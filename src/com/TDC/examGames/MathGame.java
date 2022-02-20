@@ -1,5 +1,6 @@
 package com.TDC.examGames;
 
+import com.TDC.main.MathTutorial;
 import com.TDC.main.Player;
 
 import javafx.animation.AnimationTimer;
@@ -26,9 +27,14 @@ public class MathGame extends Game {
     		{"18*2", "25*5", "20*5", "6*7", "3*9", "4*10", "3*7", "15*2", "4*6", "5*4", "2*16", "4*4", "3*4", "2*6", "19*2", "4*3"},
     		{"18/3", "21/7", "35/5", "18/2", "48/6", "77/7", "63/9", "56/8", "81/9", "42/6", "99/11", "25/5", "72/8"}};
 
+
+    public void showTutorial(){
+        MathTutorial.getTutorial();
+    }
+    
     public void play(Player player) {
-        Stage game  = new Stage();
-    	difficulty = Difficulty.getDifficulty(1 - ((player.getStats().getAcademics() + player.getStats().getMentalHealth())/2));
+    	Stage game = new Stage();
+        difficulty = Difficulty.getDifficulty(1 - ((player.getStats().getAcademics() + player.getStats().getMentalHealth())/2));
         int d = difficulty.asInt();
         int[] rand = new int[player.getCurrentCourses()];
         String[] picks = new String[player.getCurrentCourses()];
@@ -107,12 +113,6 @@ public class MathGame extends Game {
         game.show();
 
     }
-
-	@Override
-	public void showTutorial() {
-		// TODO Auto-generated method stub
-		
-	}
 
 
 }
