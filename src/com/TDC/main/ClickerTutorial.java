@@ -1,3 +1,6 @@
+import javafx.scene.Scene;
+import javafx.scene.layout.VBox;
+
 public class ClickerTutorial {
     public void getTutorial(){
         VBox beebleborx = new VBox();
