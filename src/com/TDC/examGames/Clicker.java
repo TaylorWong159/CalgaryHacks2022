@@ -25,11 +25,11 @@ public class Clicker implements Game {
     public double play(Player player) {
     	difficulty = Difficulty.getDifficulty(1 - ((player.getStats().getAcademics() + player.getStats().getMentalHealth())/2));
         int d = difficulty.asInt();
-        int[] rand = new int[5];
-        String[] picks = new String[5];
+        int[] rand = new int[player.getCurrentCourses()];
+        String[] picks = new String[player.getCurrentCourses()];
         HBox hBox = new HBox();
-        TextField[] t = new TextField[5];
-        for (int i = 0; i < 5; i++){
+        TextField[] t = new TextField[player.getCurrentCourses()];
+        for (int i = 0; i < player.getCurrentCourses(); i++){
             rand[i] = (int) Math.random() * words[d].length;
             String word = words[d][rand[i]];
             picks[i] = word;
@@ -50,10 +50,10 @@ public class Clicker implements Game {
                   this.stop();
                   return;
               }
-              for (int i = 0; i < 5; i++)
+              for (int i = 0; i < player.getCurrentCourses(); i++)
                   if (!picks[i].equals(t[i].getText())) return;
 
-              for (int i = 0; i < 5; i++){
+              for (int i = 0; i < player.getCurrentCourses(); i++){
                   score = 0;
                   if(picks[i].equals(t[i].getText())){
                       score++;
@@ -74,7 +74,7 @@ public class Clicker implements Game {
         game.setScene(scene);
         game.showAndWait();
 
-        return score / 5d;
+        return score / player.getCurrentCourses()d;
 
     }
 
