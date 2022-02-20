@@ -22,6 +22,10 @@ public class MathGame implements Game {
     		{"18*2", "25*5", "20*5", "6*7", "3*9", "4*10", "3*7", "15*2", "4*6", "5*4", "2*16", "4*4", "3*4", "2*6", "19*2", "4*3"},
     		{"18/3", "21/7", "35/5", "18/2", "48/6", "77/7", "63/9", "54/8", "81/9", "42/6", "99/11", "25/5", "72/8"}};
 
+    public void showTutorial(){
+        MathTutorial.getTutorial();
+    }
+    
     public double play(Player player) {
         difficulty = Difficulty.getDifficulty(1 - ((player.getStats().getAcademics() + player.getStats().getMentalHealth())/2));
         int d = difficulty.asInt();
