@@ -84,7 +84,7 @@ public class Main extends Application {
 						player.update();
 						if (player.getStats().getMentalHealth() <= 10) {
 							state = GameState.GAMEOVER;
-							gameOverMessage = "You're Mental Health got too low";
+							gameOverMessage = "Your Mental Health got too low";
 						}
 						monthConfirm = new MonthEndConfirmation(months[curMonth], player);
 						container.setCenter(monthConfirm);

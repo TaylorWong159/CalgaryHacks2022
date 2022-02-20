@@ -23,7 +23,7 @@ public class GameOverWindow {
 		container.getChildren().addAll(title, msg);
 		container.setAlignment(Pos.CENTER);
 		
-		Scene scene = new Scene(container, 400, 400);
+		Scene scene = new Scene(container, 600, 400);
 		
 		Stage window = new Stage();
 		window.setScene(scene);
