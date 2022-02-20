@@ -6,27 +6,18 @@ import java.util.List;
 import com.TDC.skills.Skill;
 
 public class Stats {
-	private double academics, mentalHealth, financials, monthlyCost;
+	private double academics, mentalHealth, financials;
+	private Config config;
 	private TimeDistribution timeDist;
 	private int month;
 	private List<Skill> skills = new ArrayList<Skill>();
-	
-	public Stats(TimeDistribution timeDist, double monthlyCost) {
-		this.academics = 0.5;
-		this.mentalHealth = 0.5;
-		this.financials = 10000;
-		this.timeDist = timeDist;
-		this.month = 0;
-		this.monthlyCost = monthlyCost;
-	}
 
 	public Stats(Config config) {
-		this.academics = 0.5;
-		this.mentalHealth = 0.5;
+		this.config = config;
+		this.academics = 0.7;
+		this.mentalHealth = 1;
 		this.financials = 10000;
-		//this.timeDist = timeDist;
 		this.month = 0;
-		//this.monthlyCost = monthlyCost;
 	}
 
 	public void update() {
@@ -36,10 +27,11 @@ public class Stats {
 			incMentalHealth += skill.getMentalHealth();
 			incFinancials += skill.getFinancials();
 		}
-
+		
+		// MATHS
 		academics = 0.3 * ((timeDist.getSchool() + 0.5 * timeDist.getSleep()) * (1.5 / 100) + incAcademics) + 0.7 * academics;
 		mentalHealth = 0.3 * ((timeDist.getRelax() + 0.5 * timeDist.getSleep()) * (1.5 / 100) + incMentalHealth) + 0.7 * mentalHealth;
-		financials = financials + timeDist.getWork() * 105 - monthlyCost + incFinancials;
+		financials = financials + timeDist.getWork() * 60 - config.getLocation().getMonthyCost() + incFinancials;
 		
 		academics = Math.min(1, academics);
 		mentalHealth = Math.min(1, mentalHealth);
@@ -48,6 +40,10 @@ public class Stats {
 
 	public TimeDistribution getTimeDist() {
 		return timeDist;
+	}
+	
+	public void subtractTuition(int courses) {
+		this.financials -= courses * config.getLocation().getTuitionPerCourse();
 	}
 
 	public void setTimeDist(TimeDistribution timeDist) {

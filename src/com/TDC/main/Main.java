@@ -13,6 +13,8 @@ public class Main extends Application {
 	public SetupPane setup;
 	public CourseSelectPane courseSelect;
 	public MonthParamPane monthParam;
+	public MonthEndConfirmation monthConfirm;
+	public static final String[] months = {"September", "October", "November", "December", "January", "February", "March", "April", "May", "June", "July", "August"};
 
 	public static void main(String[] args) {
 		launch(args);
@@ -33,6 +35,8 @@ public class Main extends Application {
 		container.setBottom(viewStats);
 		
 		AnimationTimer gameLoop = new AnimationTimer() {
+			int curMonth = 0;
+			
 			@Override
 			public void handle(long now) {
 				switch(state) {
@@ -52,8 +56,8 @@ public class Main extends Application {
 						
 						int courses = courseSelect.getCoursesToTake();
 						if (courses > 0) {
-							System.out.println(courses);
-							monthParam = new MonthParamPane();
+							player.getStats().subtractTuition(courses);
+							monthParam = new MonthParamPane(months[curMonth]);
 							container.setCenter(monthParam);
 							state = GameState.MONTH_PARAMS;
 						} else state = GameState.GAMEOVER;
@@ -65,8 +69,19 @@ public class Main extends Application {
 						TimeDistribution timeDist = monthParam.getTimes();
 						System.out.println(timeDist);
 						if (player != null) player.getStats().setTimeDist(timeDist);
+						state = GameState.MAINLOOP;
+						player.update();
+						monthConfirm = new MonthEndConfirmation(months[curMonth++], player);
+						container.setCenter(monthConfirm);
 						break;
 					case MAINLOOP:
+						if (monthConfirm == null) break;
+						if (!monthConfirm.isComplete()) break;
+						if (curMonth % 4 != 3) {
+							monthParam = new MonthParamPane(months[curMonth]);
+							container.setCenter(monthParam);
+							state = GameState.MONTH_PARAMS;
+						}
 						break;
 					case GAMEOVER:
 						GameOverWindow.show();

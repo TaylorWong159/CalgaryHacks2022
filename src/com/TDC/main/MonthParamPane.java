@@ -1,5 +1,6 @@
 package com.TDC.main;
 
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
@@ -11,8 +12,9 @@ public class MonthParamPane extends VBox {
 	private boolean ready = false;
 	private TimeDistribution timeDist;
 	
-	public MonthParamPane() {
-		Label text = new Label("Please partition you time for this month");
+	public MonthParamPane(String month) {
+		Label text = new Label("Please partition your time for " + month);
+		text.setFont(Font.font("arial", 36));
 		
 		Font font = Font.font("arial", 26);
 		
@@ -54,7 +56,7 @@ public class MonthParamPane extends VBox {
 		});
 		
 		this.getChildren().addAll(text, slider, confirm);
-		
+		this.setAlignment(Pos.BASELINE_CENTER);
 	}
 	
 	public boolean isComplete() {

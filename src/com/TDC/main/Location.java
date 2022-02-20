@@ -1,15 +1,20 @@
 package com.TDC.main;
 
 public enum Location {
-	DOMESTIC(750), INTERNATIONAL(2000);
+	DOMESTIC(250, 750), INTERNATIONAL(750, 2000);
 	
-	private int cost;
+	private int monthly, semester;
 	
-	private Location(int cost) {
-		this.cost = cost;
+	private Location(int monthly, int semester) {
+		this.monthly = monthly;
+		this.semester = semester;
 	}
 	
 	public int getMonthyCost() {
-		return cost;
+		return monthly;
+	}
+	
+	public int getTuitionPerCourse() {
+		return semester;
 	}
 }

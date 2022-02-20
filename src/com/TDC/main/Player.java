@@ -28,6 +28,10 @@ public class Player {
 		this.completeCourses = 0;
 	}
 	
+	public void update() {
+		stats.update();
+	}
+	
 	public Stats getStats() {
 		return stats;
 	}
@@ -69,7 +73,7 @@ public class Player {
 		schoolLabel.setFont(statFont);
 		schoolLabel.setMinWidth(labelWidth);
 		
-		Label schoolValue = new Label((int) this.stats.getAcademics() * 100 + "%");
+		Label schoolValue = new Label((int) (this.stats.getAcademics() * 100) + "%");
 		schoolValue.setFont(statFont);
 		
 		HBox schoolBox = new HBox();
@@ -80,7 +84,7 @@ public class Player {
 		mentalHealthLabel.setFont(statFont);
 		mentalHealthLabel.setMinWidth(labelWidth);
 		
-		Label mentalHealthValue = new Label((int) this.stats.getMentalHealth() * 100 + "%");
+		Label mentalHealthValue = new Label((int) (this.stats.getMentalHealth() * 100) + "%");
 		mentalHealthValue.setFont(statFont);
 		
 		HBox mentalHealthBox = new HBox();
