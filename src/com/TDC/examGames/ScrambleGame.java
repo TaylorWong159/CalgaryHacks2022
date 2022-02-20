@@ -1,6 +1,6 @@
 package com.TDC.examGames;
 
-import com.TDC.main.ClickerTutorial;
+import com.TDC.main.ScrambleTutorial;
 import com.TDC.main.Player;
 
 import javafx.animation.AnimationTimer;
@@ -15,7 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-public class Clicker extends Game {
+public class ScrambleGame extends Game {
     private Difficulty difficulty;
 
     private String[][] words = {{"bead", "tuba", "race", "seal", "gate", "cake", "icon", "kick", "many", "tape", "lame", "cake"},
@@ -24,9 +24,9 @@ public class Clicker extends Game {
 
     private String[][] scramble = {{"eadb", "abut", "rcae", "leas", "teag", "kaec", "coni", "ickk", "mayn", "peta", "meal", "kaec"},
     		{"enlco", "ceycl", "dautl", "aeplp", "orerr", "oslok", "tlbea", "voedi", "htyuo", "hcpat", "uneve", "ltiop", "veuga", "gelae", "srmud", "atlyl", "utboa", "dytsu", "hiuss"},
-    		{"btteer", "corren", "dlande", "fcangi", "rkaetm", "gronst", "urtlet", "ngitar", "veltra", "puprle"}};
+    		{"btteer", "corren", "hslande", "fcangi", "rkaetm", "gronst", "urtlet", "ngitar", "veltra", "puprle"}};
     public void showTutorial(){
-        ClickerTutorial.getTutorial();
+        ScrambleTutorial.getTutorial();
     }
     public void play(Player player) {
         Stage game  = new Stage();

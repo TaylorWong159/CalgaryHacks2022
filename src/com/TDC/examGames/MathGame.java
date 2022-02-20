@@ -61,7 +61,7 @@ public class MathGame extends Game {
         countDown.setFont(Font.font("arial", 26));
 
         AnimationTimer timer = new AnimationTimer() {
-          private int frame = 0, stop = 3000;
+          private int frame = 0, stop = 1500;
           @Override
           public void handle(long now) {
         	  countDown.setText("" + (int) ((stop - frame) / 100));

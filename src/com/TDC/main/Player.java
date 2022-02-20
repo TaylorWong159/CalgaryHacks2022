@@ -3,6 +3,7 @@ package com.TDC.main;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.TDC.skills.Skill;
 import com.TDC.skills.Skills;
 
 import javafx.geometry.Insets;
@@ -38,6 +39,10 @@ public class Player {
 	
 	public Set<Skills> getSkills() {
 		return skills;
+	}
+	
+	public void addSkill(Skills skill) {
+		skills.add(skill);
 	}
 	
 	public boolean hasSkill(Skills skill) {
@@ -109,8 +114,14 @@ public class Player {
 		HBox financialsBox = new HBox();
 		financialsBox.getChildren().addAll(financialsLabel, financialsValue);
 		
+		Label skillLabel = new Label("Skills:");
+		skillLabel.setFont(statFont);
+
+		VBox skillList = new VBox();
+		for (Skills skill : skills) skillList.getChildren().add(skill.getSkill());
+		
 		VBox container = new VBox();
-		container.getChildren().addAll(title, schoolBox, mentalHealthBox, financialsBox);
+		container.getChildren().addAll(title, schoolBox, mentalHealthBox, financialsBox, skillLabel, skillList);
 		container.setAlignment(Pos.BASELINE_CENTER);
 		container.setSpacing(4);
 		container.setPadding(new Insets(16));
