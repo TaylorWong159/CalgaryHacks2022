@@ -1,5 +1,6 @@
 package com.TDC.main;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -30,6 +31,7 @@ public class MonthEndConfirmation extends VBox {
 		
 		HBox schoolBox = new HBox();
 		schoolBox.getChildren().addAll(schoolLabel, schoolValue);
+		schoolBox.setAlignment(Pos.CENTER);
 
 		// Mental Health Stat
 		Label mentalHealthLabel = new Label("Mental Health: ");
@@ -41,6 +43,7 @@ public class MonthEndConfirmation extends VBox {
 		
 		HBox mentalHealthBox = new HBox();
 		mentalHealthBox.getChildren().addAll(mentalHealthLabel, mentalHealthValue);
+		mentalHealthBox.setAlignment(Pos.CENTER);
 
 		// Mental Health Stat
 		Label financialsLabel = new Label("Money: ");
@@ -52,14 +55,22 @@ public class MonthEndConfirmation extends VBox {
 		
 		HBox financialsBox = new HBox();
 		financialsBox.getChildren().addAll(financialsLabel, financialsValue);
+		financialsBox.setAlignment(Pos.CENTER);
+		
+		VBox statBox = new VBox();
+		statBox.getChildren().addAll(schoolBox, mentalHealthBox, financialsBox);
+		statBox.setAlignment(Pos.CENTER);
+		statBox.setPadding(new Insets(16));
 		
 		Button confirm = new Button("Confirm");
 		confirm.setOnAction(e -> {
 			confirmed = true;
 		});
+		confirm.setFont(Font.font("arial", 16));
 		
-		this.getChildren().addAll(title, stats, schoolBox, mentalHealthBox, financialsBox, confirm);
+		this.getChildren().addAll(title, stats, statBox, confirm);
 		this.setAlignment(Pos.BASELINE_CENTER);
+		this.setSpacing(8);
 	}
 	
 	public boolean isComplete() {

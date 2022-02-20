@@ -6,7 +6,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class ClickerTutorial {
-    public void getTutorial(){
+    public static void getTutorial(){
         VBox beebleborx = new VBox();
         beebleborx.getChildren().add(new Label("When exam time comes, unscramble the anagrams in the time limit to solve the problem!"));
         Scene scene = new Scene(beebleborx, 800, 600);

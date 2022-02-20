@@ -1,5 +1,7 @@
 package com.TDC.main;
 
+import com.TDC.examGames.*;
+
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -15,7 +17,8 @@ public class Main extends Application {
 	public MonthParamPane monthParam;
 	public MonthEndConfirmation monthConfirm;
 	public static final String[] months = {"September", "October", "November", "December", "January", "February", "March", "April", "May", "June", "July", "August"};
-
+	public static final Game[] games = {new Clicker(), new MathGame()};
+	
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -81,6 +84,9 @@ public class Main extends Application {
 							monthParam = new MonthParamPane(months[curMonth]);
 							container.setCenter(monthParam);
 							state = GameState.MONTH_PARAMS;
+						} else {
+							int gameIndex = (int) (Math.random() * games.length);
+							Game exam = games[gameIndex];
 						}
 						break;
 					case GAMEOVER:

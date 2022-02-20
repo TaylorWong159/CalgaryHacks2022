@@ -78,5 +78,11 @@ public class MathGame implements Game {
 
     }
 
+	@Override
+	public void showTutorial() {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }
