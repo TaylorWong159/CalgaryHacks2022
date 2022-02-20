@@ -43,7 +43,7 @@ public class CourseSelectPane extends VBox {
 			coursesToTake = 0;
 			selectionMade = true;
 		}
-		for (int i = 3; i < Math.min(playerMoney / costPerCourse, 7); i++) {
+		for (int i = 3; i <= Math.min(playerMoney / costPerCourse, 7); i++) {
 			buttonBox.getChildren().add(new CourseButton(i));
 		}
 		buttonBox.setAlignment(Pos.CENTER);
