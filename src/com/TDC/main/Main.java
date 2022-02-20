@@ -82,7 +82,7 @@ public class Main extends Application {
 						if (player != null) player.getStats().setTimeDist(timeDist);
 						state = GameState.MAINLOOP;
 						player.update();
-						if (player.getStats().getMentalHealth() <= 0) {
+						if (player.getStats().getMentalHealth() <= 10) {
 							state = GameState.GAMEOVER;
 							gameOverMessage = "You're Mental Health got too low";
 						}
